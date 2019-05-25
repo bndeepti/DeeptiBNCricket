@@ -1,4 +1,8 @@
+import com.google.gson.Gson;
+import org.apache.commons.io.IOUtils;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,9 +25,13 @@ public class CricketService {
         }
     }
 
-    public String fetchCricketScore() {
+    public Score fetchCricketScore() {
         try {
-            return urlConnection.getResponseMessage();
+            InputStream in = urlConnection.getInputStream();
+            String encoding = urlConnection.getContentEncoding();
+            encoding = encoding == null ? "UTF-8" : encoding;
+            String response = IOUtils.toString(in, encoding);
+            return new Gson().fromJson(response, Score.class);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Cricket API connection closed");
         }
