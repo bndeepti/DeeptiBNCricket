@@ -1,7 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertNull;
+import static junit.framework.TestCase.assertNotNull;
 
 public class CricketServiceTest {
 
@@ -9,12 +9,12 @@ public class CricketServiceTest {
 
     @Before
     public void setup() {
-        cricketService = new CricketService();
+        cricketService = new CricketService("http://www.google.com");
     }
 
     @Test
     public void testShouldFetchCricketScore() {
-        Score score = cricketService.fetchCricketScore();
-        assertNull(score);
+        String score = cricketService.fetchCricketScore();
+        assertNotNull(score);
     }
 }
