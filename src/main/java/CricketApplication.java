@@ -5,7 +5,16 @@ import org.apache.catalina.startup.Tomcat;
 import java.io.File;
 
 public class CricketApplication {
+    public CricketApplication() {
+        String configFileName = "application.yml";
+        CricketConfiguration.loadConfiguration(configFileName);
+    }
+
     public static void main(String[] args) throws LifecycleException {
+        startTomcat();
+    }
+
+    private static void startTomcat() throws LifecycleException {
         Tomcat tomcat = new Tomcat();
         tomcat.setPort(8085);
 

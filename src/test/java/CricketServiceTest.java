@@ -18,7 +18,7 @@ public class CricketServiceTest {
 
     @Test
     public void testShouldFetchCricketScoreFromCricketAPI() throws IOException {
-        Score score = cricketService.fetchCricketScore();
+        Score score = cricketService.fetchScore();
         assertNotNull(score);
         assertEquals("England", score.getTeam1());
         assertEquals("India", score.getTeam2());

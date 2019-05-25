@@ -9,7 +9,7 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CricketService {
+public class CricketService implements GameService {
 
     private HttpURLConnection urlConnection = null;
     final Logger logger = Logger.getLogger("CricketService");
@@ -26,7 +26,8 @@ public class CricketService {
         }
     }
 
-    public Score fetchCricketScore() throws IOException {
+    @Override
+    public Score fetchScore() throws IOException {
         InputStream in = null;
         try {
             in = urlConnection.getInputStream();

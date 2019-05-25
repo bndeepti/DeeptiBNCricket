@@ -16,7 +16,7 @@ public class CricketServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        Score score = cricketService.fetchCricketScore();
+        Score score = cricketService.fetchScore();
         Writer w = resp.getWriter();
         w.write("Team 1 is " + score.getTeam1() + "\n");
         w.write("Team 2 is " + score.getTeam2() + "\n");
