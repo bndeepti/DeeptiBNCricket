@@ -1,6 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
@@ -15,7 +17,7 @@ public class CricketServiceTest {
     }
 
     @Test
-    public void testShouldFetchCricketScoreFromCricketAPI() {
+    public void testShouldFetchCricketScoreFromCricketAPI() throws IOException {
         Score score = cricketService.fetchCricketScore();
         assertNotNull(score);
         assertEquals("England", score.getTeam1());
