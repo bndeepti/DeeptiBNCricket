@@ -1,13 +1,13 @@
 import com.google.gson.annotations.SerializedName;
 
 public class Score {
-    int creditsLeft;
+    private int creditsLeft;
 
     @SerializedName("team-1")
-    String team1;
+    private String team1;
 
     @SerializedName("team-2")
-    String team2;
+    private String team2;
 
     public int getCreditsLeft() {
         return creditsLeft;

@@ -11,9 +11,10 @@ import java.util.logging.Logger;
 
 public class CricketService {
 
-    HttpURLConnection urlConnection;
-    Logger logger = Logger.getLogger("CricketService");
+    private HttpURLConnection urlConnection = null;
+    final Logger logger = Logger.getLogger("CricketService");
 
+    // TODO read API url from a config file
     public CricketService(String cricketApiUrl) {
         try {
             URL url = new URL(cricketApiUrl);
@@ -25,15 +26,18 @@ public class CricketService {
         }
     }
 
-    public Score fetchCricketScore() {
+    public Score fetchCricketScore() throws IOException {
+        InputStream in = null;
         try {
-            InputStream in = urlConnection.getInputStream();
+            in = urlConnection.getInputStream();
             String encoding = urlConnection.getContentEncoding();
             encoding = encoding == null ? "UTF-8" : encoding;
             String response = IOUtils.toString(in, encoding);
             return new Gson().fromJson(response, Score.class);
         } catch (IOException e) {
             logger.log(Level.SEVERE, "Cricket API connection closed");
+        } finally {
+            in.close();
         }
         return null;
     }
